@@ -12,6 +12,8 @@ arduino     = serial.Serial('/dev/ttyACM0', 9600)
 capacitor   = deque([0 for x in range(CAP_CONST)])
 piano_notes = []
 
+capacitors  = [deque([0 for y in range(CAP_CONST)]) for x in range(NUMPINS)]    
+
 count = 0
 note  = 0
 
@@ -28,9 +30,9 @@ def piano(i):
     piano_notes[i].play()
 
 def doInputNormalization(raw):
-    capacitor.popleft()
-    capacitor.append(raw)
-    return sum(capacitor)/len(capacitor)
+    capacitors[note].popleft()
+    capacitor[note].append(raw)
+    return sum(capacitor[note])/len(capacitor[note])
 
 def doInput():
     arduinoInput = ""
@@ -45,12 +47,10 @@ def doInput():
     return doInputNormalization(10000 - sensor)
 
 def doStep():
-    count += 1
-    count %= 6
-    piano(count)
+    piano(note)
 
 def checkThreshold(reading):
-    return reading < THRESHOLD
+    return reading < 0.5;
 
 def controlStrat1():
     while True:
