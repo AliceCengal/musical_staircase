@@ -6,7 +6,7 @@ import time
 numpins = 6
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
-// Sound Mixer init
+# Sound Mixer init
 pygame.mixer.pre_init(channels=6, buffer=1024)
 pygame.mixer.init()
 
