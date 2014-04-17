@@ -1,11 +1,11 @@
 
 int noteCount = 7;
 int pinReading[7];
-int pinOffset = 2;
+int pinOffset = 3;
 
 void setup() {
   Serial.begin(9600);
-  
+  tone(2, 38000);
   for (int i = 0; i < noteCount; ++i) {
     pinMode(i + pinOffset, INPUT);
   }
