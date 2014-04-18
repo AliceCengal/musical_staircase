@@ -1,9 +1,9 @@
 
-int noteCount = 6;
+int noteCount = 1;
 int capacitorCount = 10;
-int pinReading[6];      // [noteCount]
-int prevReading[6][10]; // [noteCount] capacitorCount
-int isHigh[6];          // [noteCount]
+int pinReading[1];      // [noteCount]
+int prevReading[1][10]; // [noteCount] capacitorCount
+int isHigh[1];          // [noteCount]
 int pinOffset = 3;      // We use pin 2 to drive the emmiter, so start from pin 3
 
 float        THRESHOLD     = 0.4;
@@ -107,14 +107,14 @@ void loop() {
     
     if ((average > THRESHOLD) && (isHigh[i] == 0)) {
       isHigh[i] = 1;
-      Serial.print(i);
-      Serial.print(" ");
-      Serial.println(average);
+      //Serial.print(i);
+      //Serial.print(" ");
+      //Serial.println(average);
     }
     if (average <= THRESHOLD) {
       isHigh[i] = 0;
     }
-    //Serial.println(average);
+    Serial.println(average);
   }
 
   while ((micros() - startTime) < deadInterval) {}
